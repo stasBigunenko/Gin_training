@@ -1,0 +1,30 @@
+version: "3.1"
+
+services:
+  train_gin:
+    container_name: "train_gin"
+    build:
+      context: "./"
+      dockerfile: "./docker/main.Dockerfile"
+    ports:
+      - "8080:8080"
+    environment:
+      HTTPPort: ":8080"
+      POSTGRES_HOST: "postgres_gin"
+      POSTGRES_PORT: "5432"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "postgres"
+      POSTGRES_SSL: "disable"
+
+  postgres_gin:
+    container_name: "postgres_gin"
+    image: postgres:latest
+    restart: always
+    user: "postgres"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DATABASE: "postgres"
+    ports:
+      - "5432:5432"
