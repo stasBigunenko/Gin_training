@@ -2,13 +2,14 @@ package main
 
 import (
 	"context"
-	"gin_training/cmd/config"
-	"gin_training/internal/controller"
-	"gin_training/internal/storage/postgreSQL"
 	"log"
 	"net/http"
 	"os"
 	"os/signal"
+
+	"gin_training/cmd/config"
+	"gin_training/internal/controller"
+	"gin_training/internal/storage/postgreSQL"
 )
 
 func main() {

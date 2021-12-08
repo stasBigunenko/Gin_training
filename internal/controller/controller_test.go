@@ -2,17 +2,19 @@ package controller
 
 import (
 	"encoding/json"
-	"gin_training/internal/model"
-	storage "gin_training/internal/storage/postgreSQL"
-	"gin_training/internal/storage/postgreSQL/mocks"
-	"github.com/gin-gonic/gin"
-	"github.com/google/uuid"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/mock"
 	"net/http"
 	"net/http/httptest"
 	"strings"
 	"testing"
+
+	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/mock"
+
+	"gin_training/internal/model"
+	storage "gin_training/internal/storage/postgreSQL"
+	"gin_training/internal/storage/postgreSQL/mocks"
 )
 
 func TestController_FindBook(t *testing.T) {

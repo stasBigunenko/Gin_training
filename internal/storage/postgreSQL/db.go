@@ -4,11 +4,13 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
-	"gin_training/internal/model"
-	"github.com/google/uuid"
-	_ "github.com/lib/pq"
 	"log"
 	"sync"
+
+	"github.com/google/uuid"
+	_ "github.com/lib/pq"
+
+	"gin_training/internal/model"
 )
 
 type PostgresDB struct {

@@ -1,13 +1,13 @@
 package controller
 
 import (
-	"gin_training/internal/model"
-	storage "gin_training/internal/storage/postgreSQL"
-	"github.com/google/uuid"
 	"net/http"
-	_ "net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
+
+	"gin_training/internal/model"
+	storage "gin_training/internal/storage/postgreSQL"
 )
 
 type Controller struct {

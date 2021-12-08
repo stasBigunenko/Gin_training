@@ -2,14 +2,16 @@ package storage
 
 import (
 	"errors"
-	"gin_training/internal/model"
+	"log"
+	"testing"
+
 	"github.com/DATA-DOG/go-sqlmock"
 	"github.com/google/uuid"
 	_ "github.com/lib/pq"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"log"
-	"testing"
+
+	"gin_training/internal/model"
 )
 
 func TestPostgresDB_Create(t *testing.T) {

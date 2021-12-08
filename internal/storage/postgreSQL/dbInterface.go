@@ -7,5 +7,5 @@ type DB interface {
 	Create(model.Book) (model.Book, error)
 	GetBook(string) (model.Book, error)
 	UpdateBook(string, model.UpdateBookInput) (model.Book, error)
-	DeleteBook(id string) error
+	DeleteBook(string) error
 }
