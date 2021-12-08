@@ -10,6 +10,17 @@ services:
       - "8080:8080"
     environment:
       HTTPPort: ":8080"
+      GRPC: "gin_grpc:9000"
+
+  gin_grpc:
+    container_name: "grpc_gin"
+    build:
+      context: "./"
+      dockerfile: "./docker/grpc.Dockerfile"
+    ports:
+      - "9000:9000"
+    environment:
+      TcpPort: ":9000"
       POSTGRES_HOST: "postgres_gin"
       POSTGRES_PORT: "5432"
       POSTGRES_USER: "postgres"

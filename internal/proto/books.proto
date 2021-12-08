@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package proto;
+option go_package = "github.com/stasBigunenko/Gin_training";
+
+import "google/protobuf/empty.proto";
+
+service BookService {
+  rpc FindAll(google.protobuf.Empty) returns (AllBooks) {}
+  rpc Create(BookObj) returns (BookObj) {}
+  rpc GetBook(BookID) returns(BookObj) {}
+  rpc UpdateBook(NewBook) returns (BookObj) {}
+  rpc DeleteBook(BookID) returns (google.protobuf.Empty) {}
+}
+
+message BookObj {
+  string id = 1;
+  string title = 2;
+  string author = 3;
+}
+
+message AllBooks{
+  repeated BookObj allbooks = 1;
+}
+
+message BookID {
+  string ID = 1;
+}
+
+message NewBook {
+  string ID = 1;
+  BookObj Book = 2;
+}

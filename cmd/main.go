@@ -2,6 +2,9 @@ package main
 
 import (
 	"context"
+	"gin_training/internal/myGRPC/clientGRPC"
+	pb "gin_training/internal/proto"
+	"google.golang.org/grpc"
 	"log"
 	"net/http"
 	"os"
@@ -9,26 +12,26 @@ import (
 
 	"gin_training/cmd/config"
 	"gin_training/internal/controller"
-	"gin_training/internal/storage/postgreSQL"
 )
 
 func main() {
 	cfg := config.SetConfig()
 
-	db, err := storage.NewPDB(cfg.PostgresHost, cfg.PostgresPort, cfg.PostgresUser, cfg.PostgresPsw, cfg.PostgresDB, cfg.PostgresSSL)
+	conn, err := grpc.Dial(cfg.Grpc, grpc.WithInsecure())
 	if err != nil {
-		log.Fatalf("couldn't connect to db: %v\n", err)
+		log.Fatalf("did not connect to grpc: %v", err)
 	}
+	defer conn.Close()
 
-	log.Println(db.Pdb.Ping())
+	store := clientGRPC.New(pb.NewBookServiceClient(conn))
 
-	controller := controller.NewController(db)
+	router := controller.NewController(store)
 
-	router := controller.Routes()
+	r := router.Routes()
 
 	srv := http.Server{
 		Addr:    cfg.HTTPPort,
-		Handler: router,
+		Handler: r,
 	}
 
 	c := make(chan os.Signal, 1)
